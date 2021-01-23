@@ -19,7 +19,7 @@ We've looked at the different ways we can interact with our associated models th
 
 Sometimes, it may be appropriate for a user to create an instance of our join model directly. Think back to the hospital domain from our previous lab. It makes perfect sense that a user would go to `appointments/new` and fill out a form to create a new appointment.
 
-```erb
+```ruby
 <%= form_for @appointment do |f| %>
   <%= f.datetime_select :appointment_datetime %>
   <%= f.collection_select :doctor, Doctor.all, :id, :name %>
@@ -66,7 +66,7 @@ Now, let's make it so that our user can assign categories to a post when the pos
 
 Luckily, `has_many, through` functions exactly the same as a `has_many` relationship. Instances of our `Post` class still respond to a method called `category_ids=`. We'll use a helper method very similar to the `collection_select` we used previously.
 
-```erb
+```ruby
 # app/views/posts/_form.html.erb
 
 <%= form_for @post do |f| %>
@@ -133,7 +133,7 @@ We can now associate categories with our posts, but what about creating new cate
 
 First, we want a text field to enter the name of our new category. The value of the name should be nested under our `post_params`, so we don't have to add too much code to our controller. We can use the `fields_for` helper to do this very easily.
 
-```erb
+```ruby
 # app/views/posts/_form.html.erb
 
 <%= form_for @post do |f| %>
